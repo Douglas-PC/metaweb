@@ -17,15 +17,15 @@ const About = () => (
       className={`${styles.innerWidth} mx-auto ${styles.flexCenter} flex-col`}
     >
       <TypingText
-        title="| About Metadroid"
+        title="| About Douglas PC"
         textStyles="text-center"
       />
 
       <motion.p
         variants={fadeIn('up', 'tween', 0.2, 1)}
-        className="mt-[8px] font-normal sm:text-[32px] text-[20px] text-center text-secondary-white"
+        className="mt-[8px] font-normal sm:text-[28px] text-[18px] text-center text-secondary-white max-w-[1050px]"
       >
-        <span className="font-extrabold"> Metadroid </span> is a new thing in the future, where you can enjoy the virtual world by feeling like it's really real, you can feel what you feel in this metaverse world, because this is really the <span className="font-extrabold">madness of the metaverse</span> of today, using only <span className="font-extrabold">VR</span> devices you can easily explore the metaverse world you want, turn your dreams into reality. Let's <span className="font-extrabold">explore</span> the madness of the metaverse by scrolling down
+        <span className="font-extrabold">Douglas PC</span> is a technology agency helping businesses advance and innovate for the future. We architect, design, and build modern digital products and platforms that unlock growth, streamline operations, and create lasting customer value. From strategy and prototyping to scalable cloud-native engineering, our multidisciplinary team partners with you to turn vision into reliable, secure, and measurable outcomes.
       </motion.p>
 
       <motion.img
