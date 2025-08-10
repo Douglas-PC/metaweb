@@ -13,21 +13,19 @@ const Hero = () => (
       viewport={{ once: false, amount: 0.25 }}
       className={`${styles.innerWidth2} mx-auto flex flex-col`}
     >
-      <div className="relative z-10 flex flex-col items-center justify-center">
-        <motion.h1
-          variants={textVariant(1.1)}
-          className={styles.heroHeading}
-        >
-          DOUGLAS
-        </motion.h1>
+      <div className="relative z-10 flex flex-col items-center justify-center text-center">
         <motion.div
-          variants={textVariant(1.2)}
+          variants={textVariant(1.1)}
           className="flex flex-row items-center justify-center"
         >
-          <h1 className={styles.heroHeading}> PC</h1>
-          <div className={styles.heroDText} />
-          <h1 className={styles.heroHeading}> FUTURE</h1>
+          <h1 className={styles.heroHeading}>DOUGLAS&nbsp;PC</h1>
         </motion.div>
+        <motion.h2
+          variants={textVariant(1.2)}
+          className={`${styles.heroHeading} mt-2`}
+        >
+          TECHNOLOGY
+        </motion.h2>
       </div>
 
       <motion.div
