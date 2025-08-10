@@ -27,7 +27,7 @@ const Footer = () => (
             className="w-[24px] h-[24px] object-contain"
           />
           <span className="font-normal text-[16px] text-white">
-            Start a Project
+            1 (888) 784-8140
           </span>
         </button>
       </div>
