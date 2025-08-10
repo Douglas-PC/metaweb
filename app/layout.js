@@ -42,9 +42,9 @@ const RootLayout = ({ children }) => {
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(siteJsonLd) }} />
       </head>
       <body>
-        <nav style={{ padding: '0.75rem 1rem', borderBottom: '1px solid #222', display: 'flex', gap: '1rem' }}>
-          <Link href="/" style={{ fontWeight: 600 }}>Home</Link>
-          <Link href="/blog" style={{ fontWeight: 500 }}>Blog</Link>
+        <nav className="flex gap-4 border-b border-neutral-800 px-4 py-3">
+          <Link href="/" className="font-semibold">Home</Link>
+          <Link href="/blog" className="font-medium">Blog</Link>
         </nav>
         {children}
       </body>
