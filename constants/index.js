@@ -2,27 +2,27 @@ export const exploreWorlds = [
   {
     id: 'world-1',
     imgUrl: '/planet-01.png',
-    title: 'The Hogwarts',
+    title: 'Tech Services',
   },
   {
     id: 'world-2',
     imgUrl: '/planet-02.png',
-    title: 'The Upside Down',
+    title: 'AI Programming',
   },
   {
     id: 'world-3',
     imgUrl: '/planet-03.png',
-    title: 'Hueco Mundo',
+    title: 'Digital Marketing',
   },
   {
     id: 'world-4',
     imgUrl: '/planet-04.png',
-    title: 'Paradise Island',
+    title: 'Websites',
   },
   {
     id: 'world-5',
     imgUrl: '/planet-05.png',
-    title: 'Hawkins Labs',
+    title: 'Communications',
   },
 ];
 
@@ -72,17 +72,17 @@ export const socials = [
   {
     name: 'twitter',
     url: '/twitter.svg',
-    link: 'https://twitter.com/VigneshGupta9',
+    link: 'https://twitter.com/DouglasPCtech',
   },
   {
     name: 'linkedin',
     url: '/linkedin.svg',
-    link: 'https://www.linkedin.com/in/vigneshgupta/',
+    link: 'https://www.linkedin.com/company/DouglasPCtech',
   },
   {
     name: 'instagram',
     url: '/instagram.svg',
-    link: 'https://www.instagram.com/_viggi.g_/',
+    link: 'https://www.instagram.com/DouglasPCtech',
   },
 ];
 
