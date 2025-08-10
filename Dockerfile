@@ -1,18 +1,26 @@
 ##########
 # Builder stage: build and export static Next.js site
+# Upgraded to Node 20 (current LTS) to address security advisories flagged in Node 18 image.
 ##########
-FROM node:18-alpine AS builder
+FROM node:20-alpine AS builder
 WORKDIR /app
 
 # Install dependencies (cached layer)
 COPY package.json package-lock.json* ./
-RUN npm ci || npm install
+RUN apk --no-cache upgrade \
+	&& npm ci --no-audit --no-fund || npm install --no-audit --no-fund
+
+# Provide defaults for canonical origin so prebuild (verify-env) passes inside container.
+ARG SITE_ORIGIN=https://agency.douglaspc.com
+ARG NEXT_PUBLIC_SITE_ORIGIN=${SITE_ORIGIN}
+ENV SITE_ORIGIN=${SITE_ORIGIN} \
+		NEXT_PUBLIC_SITE_ORIGIN=${NEXT_PUBLIC_SITE_ORIGIN}
 
 # Copy source
 COPY . .
 
-# Static export (includes build)
-RUN npm run export
+# Build & static export (Next.js 15 with output: 'export')
+RUN npm run build && npx next export
 
 ##########
 # Runtime stage: Nginx to serve static assets
@@ -20,7 +28,7 @@ RUN npm run export
 FROM nginx:1.27-alpine AS runner
 LABEL org.opencontainers.image.title="Douglas PC Static Site" \
 	org.opencontainers.image.description="Static export of Next.js site served via Nginx" \
-	org.opencontainers.image.source="https://github.com/vignesh-gupta/meta-droid" \
+	or.opencontainers.image.source="https://github.com/Douglas-PC/metaweb" \
 	org.opencontainers.image.licenses="MIT"
 
 # Copy custom nginx config (caching, gzip)
