@@ -2,12 +2,13 @@
 # Builder stage: build and export static Next.js site
 # Upgraded to Node 20 (current LTS) to address security advisories flagged in Node 18 image.
 ##########
-FROM node:20-alpine AS builder
+FROM node:20-slim AS builder
 WORKDIR /app
 
 # Install dependencies (cached layer)
 COPY package.json package-lock.json* ./
-RUN apk add --no-cache git \
+RUN apt-get update && apt-get install -y --no-install-recommends git ca-certificates \
+	&& rm -rf /var/lib/apt/lists/* \
 	&& (npm ci --no-audit --no-fund || npm install --no-audit --no-fund)
 
 # Provide defaults for canonical origin so prebuild (verify-env) passes inside container.
@@ -20,7 +21,7 @@ ENV SITE_ORIGIN=${SITE_ORIGIN} \
 COPY . .
 
 # Build & static export (Next.js 15 with output: 'export')
-RUN npm run build && npx next export
+RUN npm run build
 
 ##########
 # Runtime stage: Nginx to serve static assets
