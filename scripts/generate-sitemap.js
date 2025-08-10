@@ -30,9 +30,19 @@ if (!fs.existsSync(outDir)) {
 }
 
 const pages = collectHtml(outDir).map((p) => p.replace(/\\/g, '/'));
+
+// add blog index if blog posts exist
+const blogContentDir = path.join(process.cwd(), 'content', 'blog');
+if (fs.existsSync(blogContentDir) && !pages.includes('/blog/')) {
+  pages.push('/blog/');
+}
+
 const urls = pages.map((p) => {
   const loc = `${domain}${p.startsWith('/') ? p : `/${p}`}`;
-  return `  <url><loc>${loc}</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>`;
+  const isBlog = loc.includes('/blog/');
+  const changefreq = isBlog ? 'monthly' : 'weekly';
+  const priority = p === '/' ? '1.0' : (isBlog ? (p === '/blog/' ? '0.8' : '0.6') : '0.7');
+  return `  <url><loc>${loc}</loc><changefreq>${changefreq}</changefreq><priority>${priority}</priority></url>`;
 });
 
 const xml = `${'<?xml version="1.0" encoding="UTF-8"?>'}\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.join('\n')}\n</urlset>\n`;
