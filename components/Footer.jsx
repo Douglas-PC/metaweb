@@ -24,6 +24,7 @@ const Footer = () => (
           <img
             src="/headset.svg"
             alt="Call us"
+            loading="lazy"
             className="w-[24px] h-[24px] object-contain"
           />
           <span className="font-normal text-[16px] text-white">
@@ -49,6 +50,7 @@ const Footer = () => (
                 <img
                   src={social.url}
                   alt={social.name}
+                  loading="lazy"
                   className="w-[24px] h-[24px] object-contain"
                 />
               </a>

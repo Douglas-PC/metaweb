@@ -14,15 +14,15 @@ const Feedback = () => (
       className={`${styles.innerWidth} mx-auto flex lg:flex-row flex-col gap-6`}
     >
       <motion.div
-        variants={fadeIn('right', 'tweeen', 0.2, 1)}
-        className="flex-[0.4] lg:max-[370px] flex justify-end lg:justify-center flex-col gradient-05 sm:p-8 p-4 rounded-[32px] border-[1px] border-[#6a6a6a] relative"
+        variants={fadeIn('right', 'tween', 0.2, 1)}
+        className="flex-[0.45] max-w-[460px] w-full mx-auto self-center flex flex-col gradient-05 sm:px-12 sm:py-9 px-7 py-6 rounded-[36px] border border-[#6a6a6a]/60 relative shadow-[0_6px_28px_-6px_rgba(0,0,0,0.45)] backdrop-blur-[3px]"
       >
         <div className="feedback-gradient" />
-        <div>
-          <p className="font-normal sm:text-[16px] text-[12px] sm:leading-[22px] leading-[18px] text-white uppercase tracking-wide">Douglas PC</p>
-          <h4 className="font-bold sm:text-[30px] text-[24px] sm:leading-[38px] leading-[32px] text-white">Innovation Partner</h4>
+        <div className="pr-2">
+          <p className="font-semibold sm:text-[15px] text-[12px] sm:leading-[22px] leading-[18px] text-white/90 tracking-wide">Douglas PC</p>
+          <h4 className="mt-1 font-bold sm:text-[30px] text-[24px] sm:leading-[38px] leading-[32px] text-white tracking-tight">Innovation Partner</h4>
         </div>
-        <p className="mt-[24px] font-normal sm:text-[24px] text-[18px] sm:leading-[45px] leading-[39px] text-white">
+        <p className="mt-6 font-normal sm:text-[22px] text-[17px] sm:leading-[40px] leading-[34px] text-white/95">
           “We created Douglas PC to help organizations move faster with clarity. Innovation isn't a buzzword—it's the compound result of focused strategy, great design, and disciplined engineering.”
         </p>
       </motion.div>

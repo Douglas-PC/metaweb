@@ -51,6 +51,14 @@ If you need server rendering on Cloudflare Workers, migrate to the Next.js Edge 
 ### GitHub Actions (CI)
 Workflow (added) runs lint + build on pushes and PRs to `main`.
 
+### Testing
+Jest + Testing Library are configured.
+Run:
+```bash
+npm test
+```
+Add test files under `__tests__/` with suffix `.test.jsx`.
+
 ### Conventions
 - Commits: `feat:`, `chore:`, `fix:`, `docs:`, `refactor:`, etc.
 - Components in `components/`, motion / layout sections in `sections/`.

@@ -35,15 +35,15 @@ export const startingFeatures = [
 export const newFeatures = [
   {
     imgUrl: '/vrpano.svg',
-    title: 'A new world',
+    title: 'AI Workflow Orchestration',
     subtitle:
-        'we have the latest update with new world for you to try never mind',
+      'Unified inference & automation layer that routes tasks to the optimal model or rule engine in real time.',
   },
   {
     imgUrl: '/headset.svg',
-    title: 'More realistic',
+    title: 'Full‑Funnel Growth Campaigns',
     subtitle:
-        'In the latest update, your eyes are narrow, making the world more realistic than ever',
+      'Coordinated creative, SEO, and performance media execution with measurable attribution and rapid iteration.',
   },
 ];
 

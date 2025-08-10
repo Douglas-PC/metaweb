@@ -25,8 +25,24 @@ jobs:
       - name: Lint
         run: npx eslint . --max-warnings=0 || npx eslint .
 
+      - name: Run Tests
+        run: npm test -- --ci
+
+      - name: Accessibility Tests
+        run: npm run test:a11y -- --ci || echo "a11y tests failed" 
+
       - name: Build
         run: npm run build
+
+      - name: Bundle Report
+        run: npm run perf:report || echo "perf report failed"
+
+      - name: Upload bundle report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: bundle-report
+          path: bundle-report.html
 
       - name: Upload build artifacts
         if: success()

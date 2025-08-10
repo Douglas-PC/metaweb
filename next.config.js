@@ -4,24 +4,13 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 });
 
 const nextConfig = {
-  experimental: {
-    appDir: true,
-  },
+  output: 'export', // enable static HTML export
   images: {
     unoptimized: true,
   },
   reactStrictMode: true,
-  headers: async () => ([
-    {
-      source: '/(.*)',
-      headers: [
-        { key: 'X-Frame-Options', value: 'SAMEORIGIN' },
-        { key: 'X-Content-Type-Options', value: 'nosniff' },
-        { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
-        { key: 'Permissions-Policy', value: 'geolocation=()' },
-      ],
-    },
-  ]),
+  // Note: custom headers removed due to static export (output: 'export').
+  // If deploying with a server/edge later, reintroduce headers() for security headers.
 };
 
 module.exports = withBundleAnalyzer(nextConfig);

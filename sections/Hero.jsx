@@ -36,6 +36,7 @@ const Hero = () => (
         <img
           src="/cover.png"
           alt="cover"
+          loading="lazy"
           className="w-full sm:h-[500px] h-[350px] object-cover rounded-tl-[140px] z-10 relative"
         />
 
@@ -44,6 +45,7 @@ const Hero = () => (
             <motion.img
               src="/stamp.png"
               alt="stamp"
+              loading="lazy"
               className="sm:w-[155px] w-[100px] sm:h-[155px] h-[100px] object-contain "
               animate={{ rotate: 360 }}
               transition={{ repeat: Infinity, duration: 7, repeatType: 'loop' }}

@@ -47,6 +47,18 @@ const World = () => (
         <div className="absolute top-0 right-[22%] w-[70px] h-[70px] p-[6px] rounded-full bg-[#5d6680]">
           <img src="/people-06.png" alt="people" className="w-full h-full" />
         </div>
+        {/* Central Florida member with label & pulse */}
+        {/* Southeastern US (bottom-right corner of continental USA). Adjust top/left % if map asset changes. */}
+        <div
+          className="absolute top-[63%] left-[57%] w-[70px] h-[70px] p-[6px] rounded-full bg-[#5d6680] shadow-[0_0_0_3px_rgba(255,255,255,0.25)] flex items-center justify-center group"
+          aria-label="Team member - Central Florida"
+        >
+          {/* Removed pulse animation for a static marker */}
+          <img src="/people-01.png" alt="Central Florida member" className="relative w-full h-full rounded-full" />
+          <span className="absolute left-1/2 top-full mt-2 -translate-x-1/2 bg-black/70 backdrop-blur-sm text-white text-[11px] sm:text-xs px-2 py-1 rounded-full font-medium tracking-wide whitespace-nowrap shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            Central Florida
+          </span>
+        </div>
         {/* Character on Map ends */}
 
       </motion.div>
