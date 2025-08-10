@@ -7,7 +7,6 @@ const nextConfig = {
   experimental: {
     appDir: true,
   },
-  output: 'export', // enable static export
   images: {
     unoptimized: true,
   },
