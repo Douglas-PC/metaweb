@@ -7,8 +7,8 @@ WORKDIR /app
 
 # Install dependencies (cached layer)
 COPY package.json package-lock.json* ./
-RUN apk --no-cache upgrade \
-	&& npm ci --no-audit --no-fund || npm install --no-audit --no-fund
+RUN apk add --no-cache git \
+	&& (npm ci --no-audit --no-fund || npm install --no-audit --no-fund)
 
 # Provide defaults for canonical origin so prebuild (verify-env) passes inside container.
 ARG SITE_ORIGIN=https://agency.douglaspc.com
@@ -28,7 +28,7 @@ RUN npm run build && npx next export
 FROM nginx:1.27-alpine AS runner
 LABEL org.opencontainers.image.title="Douglas PC Static Site" \
 	org.opencontainers.image.description="Static export of Next.js site served via Nginx" \
-	or.opencontainers.image.source="https://github.com/Douglas-PC/metaweb" \
+	org.opencontainers.image.source="https://github.com/Douglas-PC/metaweb" \
 	org.opencontainers.image.licenses="MIT"
 
 # Copy custom nginx config (caching, gzip)
@@ -37,9 +37,13 @@ COPY nginx.conf /etc/nginx/conf.d/default.conf
 # Copy exported site
 COPY --from=builder /app/out /usr/share/nginx/html
 
+# Ensure correct permissions & run as non-root (nginx user exists in image)
+RUN chown -R nginx:nginx /usr/share/nginx/html
+USER nginx
+
 EXPOSE 80
 
-HEALTHCHECK --interval=30s --timeout=3s --retries=3 CMD wget -q -O - http://localhost/healthz || exit 1
+HEALTHCHECK --interval=30s --timeout=3s --retries=3 CMD wget -q -O - http://127.0.0.1/healthz || exit 1
 
 # Provide a simple health file (optional); if not present, healthcheck hits index.html
 RUN echo "ok" > /usr/share/nginx/html/healthz

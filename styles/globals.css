@@ -2,12 +2,24 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Base resets & typography */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Eudoxus Sans", sans-serif;
+}
+html {
   scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+body {
+  font-family: "Eudoxus Sans", sans-serif;
+  text-rendering: optimizeLegibility;
+}
+
+@layer base {
+  /* Design tokens placeholder (intentionally left without :root to satisfy lint) */
 }
 
 .gradient-01 {
@@ -47,8 +59,8 @@
 .glassmorphism {
   background: rgba(255, 255, 255, 0.25);
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-  backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
   border: 1px solid rgba(255, 255, 255, 0.18);
 }
 
