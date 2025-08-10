@@ -1,34 +1,71 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Douglas PC – Digital Innovation Agency
 
-## Getting Started
+AI strategy, intelligent automation, custom software engineering, data & ML enablement, and growth-focused digital product delivery.
 
-First, run the development server:
+### Key Service Pillars
+- AI Strategy & Roadmapping – Prioritize high‑impact use cases with measurable ROI.
+- Custom Software Engineering – Domain-driven, API-first, cloud-native platforms.
+- Intelligent Automation – Event-driven orchestration that removes manual friction.
+- Data & ML Enablement – Pipelines, feature stores, and safe model operationalization.
+- Product Acceleration – From idea to validated MVP in weeks, not quarters.
 
+### Tech Stack
+Next.js 13 (App Router), React 18, Tailwind CSS (JIT), Framer Motion, Node.js 18.
+
+### Local Development
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
+# http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Production build:
+```bash
+npm run build
+npm start
+```
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+### Docker
+```bash
+docker build -t douglaspc/metaweb .
+docker run -p 3000:3000 douglaspc/metaweb
+```
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+### SEO / Metadata
+Defined in `app/head.js`: Open Graph, Twitter Card, structured data (Organization), canonical URL placeholder (update when deployed).
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+### Cloudflare Pages Deployment
+1. Create a new Cloudflare Pages project and connect the GitHub repo.
+2. Framework: None (auto-detect) or set Build command: `npm run build`
+3. Output directory: `.next`
+4. Set environment variable: `NODE_VERSION=18` (or use Cloudflare default Node 18+ environment).
+5. (Optional) Add `NEXT_PUBLIC_*` env vars for runtime config.
+6. Enable caching & asset compression in Cloudflare dashboard.
 
-## Learn More
+Because Next.js (server mode) requires a Node server, consider one of:
+- Use Cloudflare Pages + Functions (experimental) with Next.js adapter.
+- Or export a static version if all routes are static: `next build && next export` (set output dir to `out`).
 
-To learn more about Next.js, take a look at the following resources:
+If you need server rendering on Cloudflare Workers, migrate to the Next.js Edge / Middleware compatible approach or use a platform like Vercel/Fly/Render.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### GitHub Actions (CI)
+Workflow (added) runs lint + build on pushes and PRs to `main`.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+### Conventions
+- Commits: `feat:`, `chore:`, `fix:`, `docs:`, `refactor:`, etc.
+- Components in `components/`, motion / layout sections in `sections/`.
+- Shared styling tokens in `styles/index.js`.
 
-## Deploy on Vercel
+### Roadmap Ideas
+- Blog content system (MDX) for insights & resources.
+- Contact / quote form with email integration.
+- Case studies & client outcomes page.
+- Analytics & event tracking.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Contact
+Phone: 1 (888) 784-8140  
+Twitter: @DouglasPCtech  
+LinkedIn: DouglasPCtech  
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+---
+© {new Date().getFullYear()} Douglas PC. All rights reserved.
