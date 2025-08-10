@@ -1,43 +1,82 @@
 import '../styles/globals.css';
 import Link from 'next/link';
 
+export const metadata = {
+  metadataBase: new URL('https://www.douglaspc.com'),
+  title: 'Douglas PC – AI, Automation, Product Engineering & Digital Growth',
+  description: 'Douglas PC is a digital innovation agency delivering AI strategy, custom software engineering, intelligent automation, data platforms, and growth-focused product development.',
+  robots: 'index,follow',
+  author: 'Douglas PC',
+  icons: {
+    icon: '/metadroid-fav.png',
+  },
+  openGraph: {
+    type: 'website',
+    siteName: 'Douglas PC | Digital Innovation Agency',
+    title: 'Douglas PC – AI, Automation, Product Engineering & Digital Growth',
+    description: 'Douglas PC is a digital innovation agency delivering AI strategy, custom software engineering, intelligent automation, data platforms, and growth-focused product development.',
+    url: 'https://www.douglaspc.com',
+    images: [
+      {
+        url: '/cover.png',
+        alt: 'Douglas PC innovation visual',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Douglas PC – AI, Automation, Product Engineering & Digital Growth',
+    description: 'Douglas PC is a digital innovation agency delivering AI strategy, custom software engineering, intelligent automation, data platforms, and growth-focused product development.',
+    images: ['/cover.png'],
+    site: '@DouglasPCtech',
+  },
+};
+
+export const viewport = {
+  themeColor: '#1A232E',
+};
+
 const RootLayout = ({ children }) => {
-  const origin = process.env.NEXT_PUBLIC_SITE_ORIGIN || 'https://example.com';
   const orgJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Organization',
     name: 'Douglas PC',
-    url: origin,
-    logo: `${origin}/metadroid-fav.png`,
+    url: 'https://www.douglaspc.com',
+    logo: '/metadroid-fav.png',
     sameAs: [
       'https://www.linkedin.com/company/douglaspctech',
       'https://twitter.com/DouglasPCtech',
+      'https://www.instagram.com/DouglasPCtech',
     ],
+    contactPoint: [
+      {
+        '@type': 'ContactPoint',
+        telephone: '+1-888-784-8140',
+        contactType: 'sales',
+        areaServed: 'US',
+        availableLanguage: ['en'],
+      },
+    ],
+    description: 'Douglas PC is a digital innovation agency delivering AI strategy, custom software engineering, intelligent automation, data platforms, and growth-focused product development.',
   };
+
   const siteJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
     name: 'Douglas PC',
-    url: origin,
+    url: 'https://www.douglaspc.com',
     potentialAction: {
       '@type': 'SearchAction',
-      target: `${origin}/blog?query={search_term_string}`,
+      target: 'https://www.douglaspc.com/blog?query={search_term_string}',
       'query-input': 'required name=search_term_string',
     },
   };
+
   return (
     <html lang="en">
       <head>
         <link rel="preconnect" href="https://stijndv.com" />
         <link rel="stylesheet" href="https://stijndv.com/fonts/Eudoxus-Sans.css" />
-        <link rel="canonical" href={origin} />
-        <meta name="viewport" content="width=device-width,initial-scale=1" />
-        <meta name="description" content="Douglas PC – Innovation partner for AI strategy, automation, and full‑stack product engineering." />
-        <meta name="theme-color" content="#000000" />
-        <meta property="og:site_name" content="Douglas PC" />
-        <meta property="og:type" content="website" />
-        <meta property="og:title" content="Douglas PC – Innovation Partner" />
-        <meta property="og:description" content="AI workflow orchestration, platform engineering, and growth enablement." />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(orgJsonLd) }} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(siteJsonLd) }} />
       </head>
