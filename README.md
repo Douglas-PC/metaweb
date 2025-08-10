@@ -10,7 +10,7 @@ AI strategy, intelligent automation, custom software engineering, data & ML enab
 - Product Acceleration – From idea to validated MVP in weeks, not quarters.
 
 ### Tech Stack
-Next.js 13 (App Router), React 18, Tailwind CSS (JIT), Framer Motion, Node.js 18.
+Next.js 15 (App Router, static export), React 18, Tailwind CSS, Framer Motion, Node.js 18.
 
 ### Local Development
 ```bash
@@ -32,21 +32,42 @@ docker run -p 3000:3000 douglaspc/metaweb
 ```
 
 ### SEO / Metadata
-Defined in `app/head.js`: Open Graph, Twitter Card, structured data (Organization), canonical URL placeholder (update when deployed).
+Defined in `app/layout.js`: Open Graph, Twitter Card, basic canonical tag. Blog posts include Article JSON-LD.
 
-### Cloudflare Pages Deployment
-1. Create a new Cloudflare Pages project and connect the GitHub repo.
-2. Framework: None (auto-detect) or set Build command: `npm run build`
-3. Output directory: `.next`
-4. Set environment variable: `NODE_VERSION=18` (or use Cloudflare default Node 18+ environment).
-5. (Optional) Add `NEXT_PUBLIC_*` env vars for runtime config.
-6. Enable caching & asset compression in Cloudflare dashboard.
+### Cloudflare Pages Deployment (Subdomain: `agency.douglaspc.com`)
+Static export is enabled (`output: 'export'`). Deployment uploads the `out/` directory.
 
-Because Next.js (server mode) requires a Node server, consider one of:
-- Use Cloudflare Pages + Functions (experimental) with Next.js adapter.
-- Or export a static version if all routes are static: `next build && next export` (set output dir to `out`).
+1. Set required env vars (must match):
+```
+SITE_ORIGIN=https://agency.douglaspc.com
+NEXT_PUBLIC_SITE_ORIGIN=https://agency.douglaspc.com
+```
+`prebuild` script fails if they're missing/mismatched.
 
-If you need server rendering on Cloudflare Workers, migrate to the Next.js Edge / Middleware compatible approach or use a platform like Vercel/Fly/Render.
+2. Cloudflare Pages settings:
+- Build command: `npm run build && npx next export -o out || true`
+- Output directory: `out`
+- Node: 18+
+
+3. Add custom domain in Pages > Custom domains: `agency.douglaspc.com` (auto CNAME if Cloudflare DNS). Else manually create CNAME to `<project>.pages.dev`.
+
+4. (Optional) Preview env: set preview origins (e.g. `https://preview-agency.douglaspc.com`).
+
+5. Generate sitemap & robots locally after a production build if you want committed artifacts:
+```
+npm run build
+npm run sitemap
+npm run robots
+```
+Commit the updated `sitemap.xml` if changed.
+
+6. Post-deploy checks:
+- Canonical tag uses production origin
+- `/sitemap.xml` lists blog posts
+- `/robots.txt` references sitemap
+- `/blog` index + individual posts render
+
+7. Caching: Rely on Cloudflare default. Add `_headers` adjustments if needed for longer max-age.
 
 ### GitHub Actions (CI)
 Workflow (added) runs lint + build on pushes and PRs to `main`.
@@ -65,7 +86,8 @@ Add test files under `__tests__/` with suffix `.test.jsx`.
 - Shared styling tokens in `styles/index.js`.
 
 ### Roadmap Ideas
-- Blog content system (MDX) for insights & resources.
+- RSS / Atom feed (`/feed.xml`).
+- Tag pages for blog taxonomy.
 - Contact / quote form with email integration.
 - Case studies & client outcomes page.
 - Analytics & event tracking.
