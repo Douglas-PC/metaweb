@@ -1,25 +1,21 @@
 module.exports = {
-  env: {
-    browser: true,
-    es2021: true,
-  },
+  root: true,
+  env: { browser: true, es2021: true, node: true },
   extends: [
-    'plugin:react/recommended',
     'airbnb',
+    'plugin:react/recommended',
+    'plugin:jsx-a11y/recommended',
+    'plugin:import/recommended',
+    'next/core-web-vitals',
   ],
-  parserOptions: {
-    ecmaFeatures: {
-      jsx: true,
-    },
-    ecmaVersion: 12,
-    sourceType: 'module',
+  parserOptions: { ecmaFeatures: { jsx: true }, ecmaVersion: 2021, sourceType: 'module' },
+  plugins: ['react', 'jsx-a11y', 'import'],
+  settings: {
+    react: { version: 'detect' },
   },
-  plugins: [
-    'react',
-  ],
   rules: {
     'react/no-unescaped-entities': 0,
-    'eslintreact/no-danger': 0,
+    'react/no-danger': 0,
     'react/jsx-max-props-per-line': 0,
     'react/jsx-first-prop-new-line': 0,
     'no-console': 0,
@@ -36,39 +32,10 @@ module.exports = {
     'react/react-in-jsx-scope': 'off',
     'react/jsx-props-no-spreading': 'off',
     'jsx-a11y/no-noninteractive-element-interactions': 'off',
-    'react/function-component-definition': [
-      2,
-      {
-        namedComponents: 'arrow-function',
-        unnamedComponents: 'arrow-function',
-      },
-    ],
-    'max-len': [
-      2,
-      1050,
-    ],
-    'no-multiple-empty-lines': [
-      'error',
-      {
-        max: 1,
-        maxEOF: 1,
-      },
-    ],
-    'no-underscore-dangle': [
-      'error',
-      {
-        allow: [
-          '_d',
-          '_dh',
-          '_h',
-          '_id',
-          '_m',
-          '_n',
-          '_t',
-          '_text',
-        ],
-      },
-    ],
+    'react/function-component-definition': [2, { namedComponents: 'arrow-function', unnamedComponents: 'arrow-function' }],
+    'max-len': [2, 1050],
+    'no-multiple-empty-lines': ['error', { max: 1, maxEOF: 1 }],
+    'no-underscore-dangle': ['error', { allow: ['_d', '_dh', '_h', '_id', '_m', '_n', '_t', '_text'] }],
     'object-curly-newline': 0,
     'react/jsx-filename-extension': 0,
     'react/jsx-one-expression-per-line': 0,
@@ -77,23 +44,16 @@ module.exports = {
     'jsx-a11y/no-autofocus': 0,
     'jsx-a11y/no-static-element-interactions': 0,
     'react/no-array-index-key': 0,
-    'jsx-a11y/anchor-is-valid': [
-      'error',
-      {
-        components: [
-          'Link',
-        ],
-        specialLink: [
-          'to',
-          'hrefLeft',
-          'hrefRight',
-        ],
-        aspects: [
-          'noHref',
-          'invalidHref',
-          'preferButton',
-        ],
-      },
-    ],
+    'jsx-a11y/anchor-is-valid': ['error', { components: ['Link'], specialLink: ['to', 'hrefLeft', 'hrefRight'], aspects: ['noHref', 'invalidHref', 'preferButton'] }],
+  '@next/next/no-img-element': 0,
   },
+  overrides: [
+    {
+      files: ['*.js', '*.jsx', '*.ts', '*.tsx'],
+      rules: {
+        // Allow dev-time console during early stage
+        'no-console': process.env.CI ? 'error' : 'warn',
+      },
+    },
+  ],
 };

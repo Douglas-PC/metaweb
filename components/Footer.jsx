@@ -20,16 +20,16 @@ const Footer = () => (
           Accelerate Innovation
           <span className="block text-[24px] md:text-[28px] font-normal tracking-normal mt-2">with Douglas PC</span>
         </h4>
-        <button type="button" className="flex items-center h-fit py-4 px-6 bg-[#25618B] rounded-[32px] gap-[12px]">
+        <a href="tel:+18887848140" className="flex items-center h-fit py-4 px-6 bg-[#25618B] rounded-[32px] gap-[12px] focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#25618B]/60" aria-label="Call Douglas PC at 1 888 784 8140">
           <img
             src="/headset.svg"
-            alt="headset"
+            alt="Call us"
             className="w-[24px] h-[24px] object-contain"
           />
           <span className="font-normal text-[16px] text-white">
             1 (888) 784-8140
           </span>
-        </button>
+        </a>
       </div>
 
       <div className="flex flex-col">
