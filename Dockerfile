@@ -2,7 +2,7 @@
 # Builder stage: build and export static Next.js site
 # Upgraded to Node 20 (current LTS) to address security advisories flagged in Node 18 image.
 ##########
-FROM node:20-slim AS builder
+FROM node:20.15.1-slim AS builder
 WORKDIR /app
 
 # Install dependencies (cached layer)
@@ -26,7 +26,7 @@ RUN npm run build
 ##########
 # Runtime stage: Nginx to serve static assets
 ##########
-FROM nginx:1.27-alpine AS runner
+FROM nginx:1.27.0-alpine-slim AS runner
 LABEL org.opencontainers.image.title="Douglas PC Static Site" \
 	org.opencontainers.image.description="Static export of Next.js site served via Nginx" \
 	org.opencontainers.image.source="https://github.com/Douglas-PC/metaweb" \
@@ -38,9 +38,9 @@ COPY nginx.conf /etc/nginx/conf.d/default.conf
 # Copy exported site
 COPY --from=builder /app/out /usr/share/nginx/html
 
-# Ensure correct permissions & run as non-root (nginx user exists in image)
+# Ensure correct permissions for static files
 RUN chown -R nginx:nginx /usr/share/nginx/html
-USER nginx
+
 
 EXPOSE 80
 
