@@ -30,7 +30,7 @@ jobs:
         env:
           LHCI_PORT: 8080
       - name: Upload Lighthouse artifacts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: lighthouse-report
           path: ./.lighthouseci
